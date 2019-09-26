@@ -1,23 +1,34 @@
 package com.Monaco;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class App extends Application{
 
 
 	@Override
 	public void start(Stage stage){
-		Button btn = new Button(">> Click <<");
-		btn.setOnAction(e -> System.out.println("Hello JavaFX 8"));
-		StackPane root = new StackPane();
-		root.getChildren().add(btn);
-		stage.setScene(new Scene(root));
-		stage.setWidth(300);
-		stage.setHeight(300);
-		stage.setTitle("JavaFX 8 app");
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add("styles/modena_dark.css");
+
+		stage.getIcons().clear();
+		stage.getIcons().add(new Image("images/Icon.png"));
+		stage.setScene(scene);
+		stage.setTitle("D'yem");
 		stage.show();
 	}
 
