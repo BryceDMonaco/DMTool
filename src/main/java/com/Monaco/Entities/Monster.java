@@ -1,10 +1,10 @@
 package com.Monaco.Entities;
 
 public class Monster extends Entity {
-    String attackOneDamage;
-    String attackTwoDamage;
+    public String attackOneDamage;
+    public String attackTwoDamage;
 
-    int xp;
+    public int xp;
 
     String[] stats;
 

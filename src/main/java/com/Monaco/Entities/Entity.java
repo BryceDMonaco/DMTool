@@ -1,27 +1,27 @@
 package com.Monaco.Entities;
 
 public class Entity {
-    String name = "";
-    String entityClass = "";
-    String type = "";
-    int maxHP = -1;
-    int currentHP = -1;
-    int armorClass = -1;
-    int status = -1;
-    int initiative = -1;
+    public String name = "";
+    public String entityClass = "";
+    public String type = "";
+    public int maxHP = -1;
+    public int currentHP = -1;
+    public int armorClass = -1;
+    public int status = -1;
+    public int initiative = -1;
 
-    int str;
-    int strMod;
-    int dex;
-    int dexMod;
-    int con;
-    int conMod;
-    int intl;
-    int intlMod;
-    int wis;
-    int wisMod;
-    int cha;
-    int chaMod;
+    public int str;
+    public int strMod;
+    public int dex;
+    public int dexMod;
+    public int con;
+    public int conMod;
+    public int intl;
+    public int intlMod;
+    public int wis;
+    public int wisMod;
+    public int cha;
+    public int chaMod;
 
     @Override
     public String toString() {
