@@ -92,7 +92,7 @@ public class MonsterCellView extends ListCell<Monster> {
                 nameBox.setText(customName);
             }
 
-            acText.setText("AC: " + monster.armorClass + " XP: " + monster.xp);
+            acText.setText("AC: " + monster.armorClass + " XP: " + ((monster.xp == -999) ? "?" : monster.xp));
             currHpField.setText(String.valueOf(monster.currentHP));
             maxHpText.setText("/ " + monster.maxHP);
             attackOneLabel.setText(monster.attackOneDamage);
