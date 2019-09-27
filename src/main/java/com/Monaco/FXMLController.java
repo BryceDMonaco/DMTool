@@ -61,7 +61,7 @@ public class FXMLController implements Initializable {
             public void handle(ActionEvent event) {
                 if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
                     // Add a new monster cell to the monster list and populate it with items from the selected item
-                    monsterListView.getItems().add(monsterPickerBox.getSelectionModel().getSelectedItem());
+                    monsterListView.getItems().add(new Monster(monsterPickerBox.getSelectionModel().getSelectedItem()));
                 }
             }
         });
