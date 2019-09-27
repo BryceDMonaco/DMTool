@@ -1,14 +1,14 @@
 package com.Monaco.Entities;
 
 public class Entity {
-    public String name = "";
-    public String entityClass = "";
-    public String type = "";
-    public int maxHP = -1;
-    public int currentHP = -1;
-    public int armorClass = -1;
-    public int status = -1;
-    public int initiative = -1;
+    public String name;
+    public String entityClass;
+    public String type;
+    public int maxHP;
+    public int currentHP;
+    public int armorClass;
+    public int status;
+    public int initiative;
 
     public int str;
     public int strMod;

@@ -14,6 +14,10 @@ public class Monster extends Entity {
     }
 
     public Monster (String[] sentStats) {
+        super();
+
+        status = 0;
+
         stats = sentStats;
 
         name = sentStats[0];
