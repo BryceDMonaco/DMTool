@@ -3,6 +3,8 @@ package com.Monaco.Entities.Tools;
 import com.Monaco.Entities.Monster;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -114,6 +116,14 @@ public class MonsterCellView extends ListCell<Monster> {
                 chaText.setText(monster.cha + " (" + ((monster.chaMod >= 0) ? "+" : "") + monster.chaMod + ")");
             }
 
+            ObservableList condList = FXCollections.observableArrayList(
+                    "Normal", "Blinded", "Charmed", "Deafened", "Frightened", "Grappled", "Incapacitated",
+                    "Invisible", "Paralyzed", "Poisoned", "Prone", "Restrained", "Stunned", "Unconscious");
+
+            statusBox.setItems(condList);
+
+            statusBox.getSelectionModel().select(monster.status);
+
             currHpField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -132,7 +142,13 @@ public class MonsterCellView extends ListCell<Monster> {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                     monster.name = nameBox.getText();
-                    System.out.println(" Text Changed to  " + newValue + ")");
+                }
+            });
+
+            statusBox.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    monster.status = statusBox.getSelectionModel().getSelectedIndex();
                 }
             });
 

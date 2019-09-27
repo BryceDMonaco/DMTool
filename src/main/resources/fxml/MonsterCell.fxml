@@ -36,7 +36,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="acText" alignment="BOTTOM_LEFT" text="AC: VALUE" textAlignment="CENTER" />
+                  <Label fx:id="acText" alignment="BOTTOM_LEFT" text="AC: VALUE XP: VALUE" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
@@ -55,7 +55,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label text="Status:" />
+                  <Label text="Condition:" />
                   <ComboBox fx:id="statusBox" prefWidth="150.0" />
                </children>
             </HBox>
