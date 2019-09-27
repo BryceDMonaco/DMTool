@@ -95,12 +95,23 @@ public class MonsterCellView extends ListCell<Monster> {
             attackOneLabel.setText(monster.attackOneDamage);
             attackTwoLabel.setText(monster.attackTwoDamage);
 
-            strText.setText(String.valueOf(monster.str) + " (" + ((monster.strMod >= 0) ? "+" : "") + String.valueOf(monster.strMod) + ")");
-            dexText.setText(String.valueOf(monster.dex) + " (" + ((monster.dexMod >= 0) ? "+" : "") + String.valueOf(monster.dexMod) + ")");
-            conText.setText(String.valueOf(monster.con) + " (" + ((monster.conMod >= 0) ? "+" : "") + String.valueOf(monster.conMod) + ")");
-            intText.setText(String.valueOf(monster.intl) + " (" + ((monster.intlMod >= 0) ? "+" : "") + String.valueOf(monster.intlMod) + ")");
-            wisText.setText(String.valueOf(monster.wis) + " (" + ((monster.wisMod >= 0) ? "+" : "") + String.valueOf(monster.wisMod) + ")");
-            chaText.setText(String.valueOf(monster.cha) + " (" + ((monster.chaMod >= 0) ? "+" : "") + String.valueOf(monster.chaMod) + ")");
+            speciesTypeText.setText(monster.entityClass + " (" + monster.type + ")");
+
+            if (monster.str == -999) {
+                strText.setText("?");
+                dexText.setText("?");
+                conText.setText("?");
+                intText.setText("?");
+                wisText.setText("?");
+                chaText.setText("?");
+            } else {
+                strText.setText(String.valueOf(monster.str) + " (" + ((monster.strMod >= 0) ? "+" : "") + String.valueOf(monster.strMod) + ")");
+                dexText.setText(String.valueOf(monster.dex) + " (" + ((monster.dexMod >= 0) ? "+" : "") + String.valueOf(monster.dexMod) + ")");
+                conText.setText(String.valueOf(monster.con) + " (" + ((monster.conMod >= 0) ? "+" : "") + String.valueOf(monster.conMod) + ")");
+                intText.setText(String.valueOf(monster.intl) + " (" + ((monster.intlMod >= 0) ? "+" : "") + String.valueOf(monster.intlMod) + ")");
+                wisText.setText(String.valueOf(monster.wis) + " (" + ((monster.wisMod >= 0) ? "+" : "") + String.valueOf(monster.wisMod) + ")");
+                chaText.setText(String.valueOf(monster.cha) + " (" + ((monster.chaMod >= 0) ? "+" : "") + String.valueOf(monster.chaMod) + ")");
+            }
 
             currHpField.textProperty().addListener(new ChangeListener<String>() {
                 @Override
