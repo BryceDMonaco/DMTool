@@ -1,5 +1,6 @@
-package com.Monaco.Entities;
+package com.Monaco.Entities.Tools;
 
+import com.Monaco.Entities.Monster;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -89,7 +90,7 @@ public class MonsterCellView extends ListCell<Monster> {
                 nameBox.setText(customName);
             }
 
-            acText.setText("AC: " + String.valueOf(monster.armorClass));
+            acText.setText("AC: " + String.valueOf(monster.armorClass) + " XP: " + monster.xp);
             currHpField.setText(String.valueOf(monster.currentHP));
             maxHpText.setText("/ " + String.valueOf(monster.maxHP));
             attackOneLabel.setText(monster.attackOneDamage);

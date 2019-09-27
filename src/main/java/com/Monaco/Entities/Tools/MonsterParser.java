@@ -1,5 +1,6 @@
-package com.Monaco.Entities;
+package com.Monaco.Entities.Tools;
 
+import com.Monaco.Entities.Monster;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
