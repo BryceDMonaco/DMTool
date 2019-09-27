@@ -1,6 +1,7 @@
 package com.Monaco;
 
 import com.Monaco.Entities.Monster;
+import com.Monaco.Entities.MonsterCellView;
 import com.Monaco.Entities.MonsterParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,7 @@ import javafx.scene.control.ListView;
 
 public class FXMLController implements Initializable {
     @FXML
-    private ListView<?> monsterListView;
+    private ListView<Monster> monsterListView;
 
     @FXML
     private ListView<?> playerListView;
@@ -42,6 +43,7 @@ public class FXMLController implements Initializable {
         ObservableList<Monster> monsterList = FXCollections.observableArrayList(MonsterParser.GetMonstersFromCSV("data/MonsterCSV.csv"));
 
         monsterPickerBox.setItems(monsterList);
+        monsterListView.setCellFactory(monsterCellView -> new MonsterCellView());
 
         monsterPickerBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -59,6 +61,7 @@ public class FXMLController implements Initializable {
             public void handle(ActionEvent event) {
                 if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
                     // Add a new monster cell to the monster list and populate it with items from the selected item
+                    monsterListView.getItems().add(monsterPickerBox.getSelectionModel().getSelectedItem());
                 }
             }
         });
