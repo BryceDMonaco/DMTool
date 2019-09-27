@@ -1,8 +1,8 @@
 package com.Monaco;
 
 import com.Monaco.Entities.Monster;
-import com.Monaco.Entities.MonsterCellView;
-import com.Monaco.Entities.MonsterParser;
+import com.Monaco.Entities.Tools.MonsterCellView;
+import com.Monaco.Entities.Tools.MonsterParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
