@@ -1,4 +1,5 @@
 package com.Monaco;
+import com.Monaco.Entities.MonsterParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,8 +29,9 @@ public class App extends Application{
 		stage.getIcons().clear();
 		stage.getIcons().add(new Image("images/Icon.png"));
 		stage.setScene(scene);
-		stage.setTitle("D'yem");
+		stage.setTitle("Diem");
 		stage.show();
+
 	}
 
  }
