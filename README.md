@@ -1,4 +1,4 @@
-![Icon](src/main/resources/images/icon.png)
+![Icon](src/main/resources/images/Icon.png)
 
 # Diem
 A Tool to aid DMs everywhere.
