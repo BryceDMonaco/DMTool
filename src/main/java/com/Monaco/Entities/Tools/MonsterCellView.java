@@ -10,13 +10,21 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class MonsterCellView extends ListCell<Monster> {
     @FXML
     private HBox hbox;
+
+    @FXML
+    private VBox selectVbox;
+
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private TextField nameBox;
@@ -62,10 +70,10 @@ public class MonsterCellView extends ListCell<Monster> {
 
     private FXMLLoader mLLoader;
 
-    private String customName = null;
-
     @Override
     protected void updateItem(Monster monster, boolean empty) {
+        System.out.println(this + "is updating with monster " + monster);
+
         super.updateItem(monster, empty);
 
         if(empty || monster == null) {
@@ -74,23 +82,16 @@ public class MonsterCellView extends ListCell<Monster> {
             setGraphic(null);
 
         } else {
-            if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/MonsterCell.fxml"));
-                mLLoader.setController(this);
+            mLLoader = new FXMLLoader(getClass().getResource("/fxml/MonsterCell.fxml"));
+            mLLoader.setController(this);
 
-                try {
-                    mLLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+            try {
+                mLLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            if (customName == null) {
-                nameBox.setText(monster.name);
-            } else {
-                nameBox.setText(customName);
-            }
+            nameBox.setText(monster.name);
 
             acText.setText("AC: " + monster.armorClass + " XP: " + ((monster.xp == -999) ? "?" : monster.xp));
             currHpField.setText(String.valueOf(monster.currentHP));
