@@ -4,6 +4,9 @@ public class Entity {
     public String name;
     public String entityClass;
     public String type;
+    public String alignment;
+    public String size;
+    
     public int maxHP;
     public int currentHP;
     public int armorClass;
@@ -27,6 +30,7 @@ public class Entity {
         name = "ENTITY";
         entityClass = "ENTITYCLASS";
         type = "ENTITYTYPE";
+        alignment = "ENTITYALIGN";
         maxHP = 0;
         currentHP= 0;
         armorClass= 0;
@@ -45,6 +49,10 @@ public class Entity {
         wisMod= 0;
         cha= 0;
         chaMod= 0;
+    }
+
+    public String getCSVLine() {
+        throw new UnsupportedOperationException("No CSV entry for Entity");
     }
     
     @Override
