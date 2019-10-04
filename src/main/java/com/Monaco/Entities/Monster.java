@@ -18,34 +18,34 @@ public class Monster extends Entity {
 
         status = 0;
 
-        stats = sentStats;
+        stats = sentStats.clone();
 
-        name = sentStats[0];
-        entityClass = sentStats[0];
-        type = sentStats[1];
-        armorClass = Integer.parseInt(sentStats[5]);
-        currentHP = Integer.parseInt(sentStats[6]);
-        maxHP = Integer.parseInt(sentStats[6]);
-        attackOneDamage = sentStats[8];
-        attackTwoDamage = sentStats[9];
-        xp = (sentStats[10].equals("")) ? -999 : Integer.parseInt(sentStats[10]);
-        str = (sentStats[11].equals("")) ? -999 : Integer.parseInt(sentStats[11]);
-        strMod = (sentStats[12].equals("")) ? -999 : Integer.parseInt(sentStats[12]);
-        dex = (sentStats[13].equals("")) ? -999 : Integer.parseInt(sentStats[13]);
-        dexMod = (sentStats[14].equals("")) ? -999 : Integer.parseInt(sentStats[14]);
-        con = (sentStats[15].equals("")) ? -999 : Integer.parseInt(sentStats[15]);
-        conMod = (sentStats[16].equals("")) ? -999 : Integer.parseInt(sentStats[16]);
-        intl = (sentStats[17].equals("")) ? -999 : Integer.parseInt(sentStats[17]);
-        intlMod = (sentStats[18].equals("")) ? -999 : Integer.parseInt(sentStats[18]);
-        wis = (sentStats[19].equals("")) ? -999 : Integer.parseInt(sentStats[19]);
-        wisMod = (sentStats[20].equals("")) ? -999 : Integer.parseInt(sentStats[20]);
-        cha = (sentStats[21].equals("")) ? -999 : Integer.parseInt(sentStats[21]);
-        chaMod = (sentStats[22].equals("")) ? -999 : Integer.parseInt(sentStats[22]);
+        name = stats[0];
+        entityClass = stats[0];
+        type = stats[1];
+        armorClass = Integer.parseInt(stats[5]);
+        currentHP = Integer.parseInt(stats[6]);
+        maxHP = Integer.parseInt(stats[6]);
+        attackOneDamage = stats[8];
+        attackTwoDamage = stats[9];
+        xp = (stats[10].equals("")) ? -999 : Integer.parseInt(stats[10]);
+        str = (stats[11].equals("")) ? -999 : Integer.parseInt(stats[11]);
+        strMod = (stats[12].equals("")) ? -999 : Integer.parseInt(stats[12]);
+        dex = (stats[13].equals("")) ? -999 : Integer.parseInt(stats[13]);
+        dexMod = (stats[14].equals("")) ? -999 : Integer.parseInt(stats[14]);
+        con = (stats[15].equals("")) ? -999 : Integer.parseInt(stats[15]);
+        conMod = (stats[16].equals("")) ? -999 : Integer.parseInt(stats[16]);
+        intl = (stats[17].equals("")) ? -999 : Integer.parseInt(stats[17]);
+        intlMod = (stats[18].equals("")) ? -999 : Integer.parseInt(stats[18]);
+        wis = (stats[19].equals("")) ? -999 : Integer.parseInt(stats[19]);
+        wisMod = (stats[20].equals("")) ? -999 : Integer.parseInt(stats[20]);
+        cha = (stats[21].equals("")) ? -999 : Integer.parseInt(stats[21]);
+        chaMod = (stats[22].equals("")) ? -999 : Integer.parseInt(stats[22]);
 
     }
 
     @Override
     public String toString() {
-        return String.format(entityClass);
+        return (entityClass.equals(name)) ? entityClass : name + " the " + entityClass;
     }
 }
