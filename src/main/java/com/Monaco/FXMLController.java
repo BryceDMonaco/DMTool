@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -130,8 +128,8 @@ public class FXMLController implements Initializable {
             FileChooser fileChooser = new FileChooser();
 
             //Set extension filter for text files
-            FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm");
-            FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+            FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm", "*.DM");
+            FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.CSV");
             fileChooser.getExtensionFilters().addAll(dmExtFilter, csvExtFilter);
 
             //Show save file dialog
@@ -154,7 +152,7 @@ public class FXMLController implements Initializable {
             writer = new PrintWriter(file);
 
             // Print the header line
-            writer.println("Name,Type,ALIGNMENT,Size,CR,AC,HP,Spellcasting?,Attack 1 damage,Attack 2 Damage,XP,STR,STRMod,DEX,DEXMod,CON,CONMod,INT,INTMod,WIS,WISMod,CHA,CHAMod,Page,Arctic,Coast,Desert,Forest,Grassland,Hill,Mountain,Swamp,Underdark,Underwater,Urban,Book");
+            writer.println("Name,Entity Class,Type,Status,ALIGNMENT,Size,CR,AC,Current HP,Max HP,Spellcasting?,Attack 1 damage,Attack 2 Damage,XP,STR,STRMod,DEX,DEXMod,CON,CONMod,INT,INTMod,WIS,WISMod,CHA,CHAMod,Page,Arctic,Coast,Desert,Forest,Grassland,Hill,Mountain,Swamp,Underdark,Underwater,Urban,Book, PC or MONSTER");
 
             for (Monster monster : activeMonsters) {
                 if (monster != null) {

@@ -79,13 +79,13 @@ public class Monster extends Entity {
 
     @Override
     public String getCSVLine() {
-        return name + "," + type + "," + alignment + "," + size + "," + cr + "," + armorClass + "," + maxHP + "," +
+        return name + "," + entityClass + "," + type + "," + status + "," + alignment + "," + size + "," + cr + "," + armorClass + "," + currentHP + "," + maxHP + "," +
                 spellcasting + "," + attackOneDamage + "," + attackTwoDamage + "," + xp + "," + str + "," +
                 strMod + "," + dex + "," + dexMod + "," + con + "," + conMod + "," + intl + "," + intlMod + "," +
                 wis + "," + wisMod + "," + cha + "," + chaMod + "," + sourcePage + "," + envArctic + "," +
                 envCoast + "," + envDesert + "," + envForest + "," + envGrassland + "," + envHill + "," +
                 envMountain +"," + envSwamp + "," + envUnderdark + "," + envUnderwater + "," + envUrban +
-                "," + sourceBook;
+                "," + sourceBook + ", MONSTER";
     }
 
     @Override
