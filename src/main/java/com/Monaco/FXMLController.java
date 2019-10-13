@@ -106,21 +106,29 @@ public class FXMLController implements Initializable {
         });
 
         openButton.setOnAction(event -> {
-            // TODO Notice the user that any unsaved changes will be lost
+            if (activeMonsters.size() > 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Delete all existing monsters and open a new file?", new ButtonType("Append"), new ButtonType("Overwrite"), ButtonType.CANCEL);
+                alert.getDialogPane().getScene().getStylesheets().add("styles/modena_dark.css");
+                alert.showAndWait();
 
-            FileChooser fileChooser = new FileChooser();
+                if (alert.getResult() != ButtonType.CANCEL) {
+                    FileChooser fileChooser = new FileChooser();
 
-            //Set extension filter for text files
-            FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm", "*.DM");
-            FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.CSV");
-            fileChooser.getExtensionFilters().addAll(dmExtFilter, csvExtFilter);
+                    //Set extension filter for text files
+                    FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm", "*.DM");
+                    FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.CSV");
+                    fileChooser.getExtensionFilters().addAll(dmExtFilter, csvExtFilter);
 
-            File targetFile = fileChooser.showOpenDialog(((Node) monsterListView).getScene().getWindow());
+                    File targetFile = fileChooser.showOpenDialog(((Node) monsterListView).getScene().getWindow());
 
-            // TODO clear original list
-            //monsterListView.getItems().addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
-            activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
-            //monsterListView.refresh();
+                    if (alert.getResult().getText().equals("Overwrite")) {
+                        activeMonsters.clear();
+                    }
+
+                    activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
+
+                }
+            }
         });
 
         saveButton.setOnAction(event -> {
