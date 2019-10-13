@@ -21,6 +21,9 @@ import javafx.stage.FileChooser;
 
 public class FXMLController implements Initializable {
     @FXML
+    private MenuItem openButton;
+
+    @FXML
     private MenuItem saveButton;
 
     @FXML
@@ -100,6 +103,24 @@ public class FXMLController implements Initializable {
                     System.out.println("Done.");
                 }
             }
+        });
+
+        openButton.setOnAction(event -> {
+            // TODO Notice the user that any unsaved changes will be lost
+
+            FileChooser fileChooser = new FileChooser();
+
+            //Set extension filter for text files
+            FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm", "*.DM");
+            FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.CSV");
+            fileChooser.getExtensionFilters().addAll(dmExtFilter, csvExtFilter);
+
+            File targetFile = fileChooser.showOpenDialog(((Node) monsterListView).getScene().getWindow());
+
+            // TODO clear original list
+            //monsterListView.getItems().addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
+            activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
+            //monsterListView.refresh();
         });
 
         saveButton.setOnAction(event -> {

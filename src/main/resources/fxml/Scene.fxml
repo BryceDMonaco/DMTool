@@ -25,7 +25,7 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="Open…" />
+            <MenuItem fx:id="openButton" mnemonicParsing="false" text="Open…" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="saveButton" mnemonicParsing="false" text="Save" />

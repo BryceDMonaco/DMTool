@@ -85,7 +85,7 @@ public class Monster extends Entity {
                 wis + "," + wisMod + "," + cha + "," + chaMod + "," + sourcePage + "," + envArctic + "," +
                 envCoast + "," + envDesert + "," + envForest + "," + envGrassland + "," + envHill + "," +
                 envMountain +"," + envSwamp + "," + envUnderdark + "," + envUnderwater + "," + envUrban +
-                "," + sourceBook + ", MONSTER";
+                "," + sourceBook + ",MONSTER";
     }
 
     @Override

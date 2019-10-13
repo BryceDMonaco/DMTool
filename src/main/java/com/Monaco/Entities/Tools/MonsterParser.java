@@ -1,9 +1,11 @@
 package com.Monaco.Entities.Tools;
 
+import com.Monaco.Entities.Entity;
 import com.Monaco.Entities.Monster;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URISyntaxException;
@@ -37,5 +39,42 @@ public class MonsterParser {
         }
 
         return null;
+    }
+
+    public static List<Monster> ReadSavedFileMonsters (File file) {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(file.getPath()));
+            CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+
+            String[] line;
+            List<Monster> monsterList = new ArrayList<>();
+
+            while ((line = csvReader.readNext()) != null) {
+                if (line[38].equals("MONSTER")) {
+                    Monster monster = new Monster(saveFileLineToStandardLine(line));
+
+                    monster.name = line[0];
+                    monster.currentHP = Integer.parseInt(line[7]);
+
+                    monsterList.add(monster);
+                }
+            }
+
+            return  monsterList;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static String[] saveFileLineToStandardLine (String[] line) {
+        return new String[]{
+                line[1], line[2], line[3], line[4], line[5], line[6], line[8], line[9], line[10], line[11], line[12],
+                line[13], line[14], line[15], line[16], line[17], line[18], line[19], line[20], line[21], line[22],
+                line[23], line[24], line[25], line[26], line[27], line[28], line[29], line[30], line[31], line[32],
+                line[33], line[34], line[35], line[36], line[37]
+        };
     }
 }
