@@ -128,6 +128,17 @@ public class FXMLController implements Initializable {
                     activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
 
                 }
+            } else {
+                FileChooser fileChooser = new FileChooser();
+
+                //Set extension filter for text files
+                FileChooser.ExtensionFilter dmExtFilter = new FileChooser.ExtensionFilter("Diem files (*.dm)", "*.dm", "*.DM");
+                FileChooser.ExtensionFilter csvExtFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.CSV");
+                fileChooser.getExtensionFilters().addAll(dmExtFilter, csvExtFilter);
+
+                File targetFile = fileChooser.showOpenDialog(((Node) monsterListView).getScene().getWindow());
+
+                activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
             }
         });
 
