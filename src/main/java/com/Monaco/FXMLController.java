@@ -127,6 +127,7 @@ public class FXMLController implements Initializable {
 
                     activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
 
+                    savedFilename = targetFile.getPath();
                 }
             } else {
                 FileChooser fileChooser = new FileChooser();
@@ -139,6 +140,8 @@ public class FXMLController implements Initializable {
                 File targetFile = fileChooser.showOpenDialog(((Node) monsterListView).getScene().getWindow());
 
                 activeMonsters.addAll(MonsterParser.ReadSavedFileMonsters(targetFile));
+
+                savedFilename = targetFile.getPath();
             }
         });
 
