@@ -5,14 +5,14 @@ import com.Monaco.Entities.Monster;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
+import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MonsterParser {
     public  MonsterParser() {
@@ -20,7 +20,8 @@ public class MonsterParser {
 
     public static List<Monster> GetMonstersFromCSV (String filename) {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(ClassLoader.getSystemResource(filename).toURI()));
+            InputStream in = MonsterParser.class.getResourceAsStream(filename);
+            Reader reader = new BufferedReader(new InputStreamReader(in));
             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
 
             String[] line;
@@ -32,10 +33,10 @@ public class MonsterParser {
 
             return monsterList;
 
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+
+            System.out.println("here");
         }
 
         return null;
