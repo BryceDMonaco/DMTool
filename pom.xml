@@ -2,10 +2,10 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.Monaco</groupId>
    <artifactId>DMTool</artifactId>
-   <version>0.0.1-DEV</version>
+   <version>0.0.1</version>
    <properties>
        <!-- The final name for the JAR that you can find in target directory-->
-       <jar.final.name>DM Tool</jar.final.name>
+       <jar.final.name>${artifactId}-${version}</jar.final.name>
        <!--  the default class that has the public static void main(String[]) method -->
        <main.class>com.Monaco.Launcher</main.class>
        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,7 +48,6 @@
       </dependency>
      </dependencies>
      <build>
-        <finalName>${jar.final.name}</finalName>
          <plugins>
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
