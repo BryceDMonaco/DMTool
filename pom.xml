@@ -4,10 +4,13 @@
    <artifactId>DMTool</artifactId>
    <version>0.0.1-DEV</version>
    <properties>
-      <!-- The final name for the JAR that you can find in target directory-->
-      <jar.final.name>DM Tool</jar.final.name>
-      <!--  the default class that has the public static void main(String[]) method -->
-      <main.class>com.Monaco.App</main.class>
+       <!-- The final name for the JAR that you can find in target directory-->
+       <jar.final.name>DM Tool</jar.final.name>
+       <!--  the default class that has the public static void main(String[]) method -->
+       <main.class>com.Monaco.Launcher</main.class>
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       <maven.compiler.release>13</maven.compiler.release>
+       <javafx.version>13</javafx.version>
    </properties>
    <dependencies>
       <!-- Add your dependencies here
@@ -22,32 +25,91 @@
          <artifactId>opencsv</artifactId>
          <version>4.1</version>
       </dependency>
-   </dependencies>
-   <build>
-      <finalName>${jar.final.name}</finalName>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>2.3.2</version>
-            <configuration>
-               <source>1.8</source>
-               <target>1.8</target>
-            </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-               <archive>
-                  <manifest>
-                     <addClasspath>true</addClasspath>
+      <dependency>
+         <groupId>org.openjfx</groupId>
+         <artifactId>javafx-controls</artifactId>
+         <version>13</version>
+      </dependency>
+       <dependency>
+           <groupId>org.openjfx</groupId>
+           <artifactId>javafx-fxml</artifactId>
+           <version>13</version>
+       </dependency>
+       <dependency>
+           <groupId>org.openjfx</groupId>
+           <artifactId>javafx-base</artifactId>
+           <version>13</version>
+       </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>13</version>
+          <classifier>mac</classifier>
+      </dependency>
+     </dependencies>
+     <build>
+        <finalName>${jar.final.name}</finalName>
+         <plugins>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.8.1</version>
+                 <configuration>
+                     <release>${maven.compiler.release}</release>
+                 </configuration>
+             </plugin>
+             <plugin>
+                 <groupId>org.openjfx</groupId>
+                 <artifactId>javafx-maven-plugin</artifactId>
+                 <version>0.0.3</version>
+                 <configuration>
                      <mainClass>${main.class}</mainClass>
-                  </manifest>
-               </archive>
-            </configuration>
-         </plugin>
-      </plugins>
-   </build>
-</project>
+                 </configuration>
+             </plugin>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-shade-plugin</artifactId>
+                 <version>3.2.0</version>
+                 <executions>
+                     <execution>
+                         <phase>package</phase>
+                         <goals>
+                             <goal>shade</goal>
+                         </goals>
+                         <configuration>
+                             <shadedArtifactAttached>true</shadedArtifactAttached>
+                             <shadedClassifierName>project-classifier</shadedClassifierName>
+                             <outputFile>target\shade\${jar.final.name}.jar</outputFile>
+                             <transformers>
+                                 <transformer implementation=
+                                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                     <mainClass>${main.class}</mainClass>
+                                 </transformer>
+                             </transformers>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-antrun-plugin</artifactId>
+                 <version>1.7</version>
+                 <executions>
+                     <execution>
+                         <phase>install</phase>
+                         <goals>
+                             <goal>run</goal>
+                         </goals>
+                         <configuration>
+                             <tasks>
+                                 <delete>
+                                     <fileset dir="target\" includes="*.jar" />
+                                 </delete>
+                             </tasks>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>
+         </plugins>
+     </build>
+  </project>

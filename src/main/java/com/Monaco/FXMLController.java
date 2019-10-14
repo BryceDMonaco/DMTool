@@ -55,7 +55,7 @@ public class FXMLController implements Initializable {
     public FXMLController () {
         activeMonsters = FXCollections.observableArrayList();
 
-        monsterList = FXCollections.observableArrayList(MonsterParser.GetMonstersFromCSV("data/MonsterCSV.csv"));
+        monsterList = FXCollections.observableArrayList(MonsterParser.GetMonstersFromCSV("/data/MonsterCSV.csv"));
 
     }
 

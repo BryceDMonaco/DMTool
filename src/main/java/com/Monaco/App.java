@@ -15,7 +15,7 @@ public class App extends Application{
 	public void start(Stage stage){
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Scene.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,10 @@ public class App extends Application{
 		stage.setScene(scene);
 		stage.setTitle("Diem");
 		stage.show();
+	}
 
+	public static void main(String[] args) {
+		launch();
 	}
 
  }
