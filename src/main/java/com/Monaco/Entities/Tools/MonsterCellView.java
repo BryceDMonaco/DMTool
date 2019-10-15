@@ -9,12 +9,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 
 public class MonsterCellView extends ListCell<Monster> {
     @FXML
@@ -22,6 +29,9 @@ public class MonsterCellView extends ListCell<Monster> {
 
     @FXML
     private VBox selectVbox;
+
+    @FXML
+    private VBox attackBox;
 
     @FXML
     private GridPane gridPane;
@@ -67,6 +77,9 @@ public class MonsterCellView extends ListCell<Monster> {
 
     @FXML
     private Label chaText;
+
+    @FXML
+    private Button sourceButton;
 
     private FXMLLoader mLLoader;
 
@@ -150,6 +163,26 @@ public class MonsterCellView extends ListCell<Monster> {
                 @Override
                 public void handle(ActionEvent event) {
                     monster.status = statusBox.getSelectionModel().getSelectedIndex();
+                }
+            });
+
+            Tooltip attackTip = new Tooltip("This is a test tooltip.");
+
+            attackBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    Node  node =(Node)t.getSource();
+                    attackTip.show(node, attackBox.getScene().getWindow().getX()+t.getSceneX(), attackBox.getScene().getWindow().getY()+t.getSceneY());
+                }
+            });
+
+            sourceButton.setOnAction(event -> {
+                try {
+                    Desktop desktop = java.awt.Desktop.getDesktop();
+                    URI oURL = new URI("https://jsigvard.com/dnd/monster.php?m=" + monster.entityClass.replaceAll(" ", "-").replaceAll(",", "-").replaceAll(" ", ""));
+                    desktop.browse(oURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
 
