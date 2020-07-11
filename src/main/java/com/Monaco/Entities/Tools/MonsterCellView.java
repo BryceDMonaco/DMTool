@@ -21,6 +21,8 @@ import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URI;
 
 public class MonsterCellView extends ListCell<Monster> {
@@ -176,19 +178,37 @@ public class MonsterCellView extends ListCell<Monster> {
                 }
             });
 
+            String monsterUrlString = "https://jsigvard.com/dnd/monster.php?m=" + monster.entityClass.replaceAll(" ", "-").replaceAll(",", "-").replaceAll(" ", "");
+
             sourceButton.setOnAction(event -> {
                 try {
                     Desktop desktop = java.awt.Desktop.getDesktop();
-                    URI oURL = new URI("https://jsigvard.com/dnd/monster.php?m=" + monster.entityClass.replaceAll(" ", "-").replaceAll(",", "-").replaceAll(" ", ""));
+                    URI oURL = new URI(monsterUrlString);
                     desktop.browse(oURL);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
 
+            /*
+            // Check if the monster website is reachable or not, if not, disable the source button
+            if (!pingHost(monsterUrlString, 80, 1)) {
+                sourceButton.setDisable(true);
+            }
+            */
+
             setText(null);
             setGraphic(hbox);
         }
 
+    }
+
+    public static boolean pingHost(String host, int port, int timeout) {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(host, port), timeout);
+            return true;
+        } catch (IOException e) {
+            return false; // Either timeout or unreachable or failed DNS lookup.
+        }
     }
 }
