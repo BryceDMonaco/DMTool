@@ -29,6 +29,10 @@ public class Monster extends Entity {
 
     }
 
+    public Monster (Monster monster, int startingHealth, Status startingStatus, String startingName) {
+        this(monster.stats, startingHealth, startingStatus, startingName);
+    }
+
     public Monster (String[] sentStats) {
         super();
 
@@ -44,6 +48,61 @@ public class Monster extends Entity {
         cr = stats[4];
         armorClass = Integer.parseInt(stats[5]);
         currentHP = Integer.parseInt(stats[6]);
+        maxHP = Integer.parseInt(stats[6]);
+        spellcasting = stats[7];
+        attackOneDamage = stats[8];
+        attackTwoDamage = stats[9];
+        xp = (stats[10].equals("")) ? -999 : Integer.parseInt(stats[10]);
+        str = (stats[11].equals("")) ? -999 : Integer.parseInt(stats[11]);
+        strMod = (stats[12].equals("")) ? -999 : Integer.parseInt(stats[12]);
+        dex = (stats[13].equals("")) ? -999 : Integer.parseInt(stats[13]);
+        dexMod = (stats[14].equals("")) ? -999 : Integer.parseInt(stats[14]);
+        con = (stats[15].equals("")) ? -999 : Integer.parseInt(stats[15]);
+        conMod = (stats[16].equals("")) ? -999 : Integer.parseInt(stats[16]);
+        intl = (stats[17].equals("")) ? -999 : Integer.parseInt(stats[17]);
+        intlMod = (stats[18].equals("")) ? -999 : Integer.parseInt(stats[18]);
+        wis = (stats[19].equals("")) ? -999 : Integer.parseInt(stats[19]);
+        wisMod = (stats[20].equals("")) ? -999 : Integer.parseInt(stats[20]);
+        cha = (stats[21].equals("")) ? -999 : Integer.parseInt(stats[21]);
+        chaMod = (stats[22].equals("")) ? -999 : Integer.parseInt(stats[22]);
+        sourcePage = stats[23];
+        envArctic = stats[24];
+        envCoast = stats[25];
+        envDesert = stats[26];
+        envForest = stats[27];
+        envGrassland = stats[28];
+        envHill = stats[29];
+        envMountain = stats[30];
+        envSwamp = stats[31];
+        envUnderdark = stats[32];
+        envUnderwater = stats[33];
+        envUrban = stats[34];
+        sourceBook = stats[35];
+
+    }
+
+    /***
+     * Method overload to allow for setting different values for starting health, name, and status
+     * @param sentStats
+     * @param startingHealth -1 to start at max health
+     * @param startingStatus
+     * @param startingName Empty string indicates no custom name
+     */
+    public Monster (String[] sentStats, int startingHealth, Status startingStatus, String startingName) {
+        super();
+
+        status = startingStatus;
+
+        stats = sentStats.clone();
+
+        name = startingName.isEmpty() ? stats[0] : startingName;
+        entityClass = stats[0];
+        type = stats[1];
+        alignment = stats[2];
+        size = stats[3];
+        cr = stats[4];
+        armorClass = Integer.parseInt(stats[5]);
+        currentHP = (startingHealth == -1) ? Integer.parseInt(stats[6]) : startingHealth;
         maxHP = Integer.parseInt(stats[6]);
         spellcasting = stats[7];
         attackOneDamage = stats[8];
