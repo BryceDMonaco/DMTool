@@ -3,6 +3,7 @@ package com.Monaco;
 import com.Monaco.Entities.Monster;
 import com.Monaco.Entities.Tools.MonsterCellView;
 import com.Monaco.Entities.Tools.MonsterParser;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +44,27 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button selectAllButton;
+
+    @FXML
+    private Button deselectAllButton;
+
+    @FXML
+    private Button killSelectedButton;
+
+    @FXML
+    private Button resetSelectedButton;
+
+    @FXML
+    private Button removeSelectedButton;
+
+    @FXML
+    private Button conditionSelectedButton;
+
+    @FXML
+    private Button duplicateSelectedButton;
+
+    @FXML
+    private Button damageSelectedButton;
 
     @FXML
     private Label selectedLabel;
@@ -160,6 +182,40 @@ public class FXMLController implements Initializable {
 
         saveAsButton.setOnAction(event -> {
             saveMonstersAs();
+        });
+
+        // Allow for multiple cells to be selected at once
+        monsterListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        // Create a listener to watch the list in the handler to update the size text whenever a monster is selected/deselected
+        ChangeListener selectedChangeListener = (observable, oldValue, newValue) -> {
+            int numMonstersSelected = monsterListView.getSelectionModel().getSelectedItems().size();
+            // Update the selected count label TODO sometimes does not update when >1 selected and one is deselected
+            selectedLabel.setText(String.valueOf(numMonstersSelected) + " Selected");
+
+            // Disable selected function buttons if nothing is selected
+            killSelectedButton.setDisable(numMonstersSelected == 0);
+            resetSelectedButton.setDisable(numMonstersSelected == 0);
+            removeSelectedButton.setDisable(numMonstersSelected == 0);
+            conditionSelectedButton.setDisable(numMonstersSelected == 0);
+            duplicateSelectedButton.setDisable(numMonstersSelected == 0);
+            damageSelectedButton.setDisable(numMonstersSelected == 0);
+        };
+
+        // TODO Selecting this way basically makes the checkbox obsolete
+        monsterListView.getSelectionModel().selectedItemProperty().addListener(selectedChangeListener);
+
+        selectAllButton.setOnAction(event -> monsterListView.getSelectionModel().selectAll());
+
+        deselectAllButton.setOnAction(event -> monsterListView.getSelectionModel().clearSelection());
+
+        killSelectedButton.setOnAction(event -> {
+            for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                if (monster != null) {
+                    monster.currentHP = 0;
+                }
+            }
+            monsterListView.refresh();
         });
 
         System.out.println("Initialized!");
