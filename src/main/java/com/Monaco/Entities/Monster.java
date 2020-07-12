@@ -32,7 +32,7 @@ public class Monster extends Entity {
     public Monster (String[] sentStats) {
         super();
 
-        status = 0;
+        status = Status.NORMAL;
 
         stats = sentStats.clone();
 
@@ -92,4 +92,9 @@ public class Monster extends Entity {
     public String toString() {
         return (entityClass.equals(name)) ? entityClass : name + " the " + entityClass;
     }
+
+    public void reset () {
+          currentHP = maxHP;
+          status = Status.NORMAL;
+    };
 }

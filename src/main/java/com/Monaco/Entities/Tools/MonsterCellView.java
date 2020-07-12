@@ -1,5 +1,6 @@
 package com.Monaco.Entities.Tools;
 
+import com.Monaco.Entities.Entity;
 import com.Monaco.Entities.Monster;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,7 +134,7 @@ public class MonsterCellView extends ListCell<Monster> {
 
             statusBox.setItems(condList);
 
-            statusBox.getSelectionModel().select(monster.status);
+            statusBox.getSelectionModel().select(monster.status.ordinal());
 
             currHpField.textProperty().addListener((observable, oldValue, newValue) -> {
                 int temp = monster.currentHP;
@@ -148,7 +149,7 @@ public class MonsterCellView extends ListCell<Monster> {
 
             nameBox.textProperty().addListener((observable, oldValue, newValue) -> monster.name = nameBox.getText());
 
-            statusBox.setOnAction(event -> monster.status = statusBox.getSelectionModel().getSelectedIndex());
+            statusBox.setOnAction(event -> monster.status = Entity.Status.valueOf(((String)statusBox.getSelectionModel().getSelectedItem()).toUpperCase()));
 
             // TODO BUG Tooltip appears mulitple times and doesn't disappear
             Tooltip attackTip = new Tooltip("This is a test tooltip.");

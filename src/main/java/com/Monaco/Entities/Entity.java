@@ -1,6 +1,23 @@
 package com.Monaco.Entities;
 
 public class Entity {
+    public enum Status {
+        NORMAL,
+        BLINDED,
+        CHARMED,
+        DEAFENED,
+        FRIGHTENED,
+        GRAPPLED,
+        INCAPACITATED,
+        INVISIBLE,
+        PARALYZED,
+        POISONED,
+        PRONE,
+        RESTRAINED,
+        STUNNED,
+        UNCONSCIOUS
+    }
+
     public String name;
     public String entityClass;
     public String type;
@@ -10,7 +27,7 @@ public class Entity {
     public int maxHP;
     public int currentHP;
     public int armorClass;
-    public int status;
+    public Status status;
     public int initiative;
 
     public int str;
@@ -34,7 +51,7 @@ public class Entity {
         maxHP = 0;
         currentHP= 0;
         armorClass= 0;
-        status= 0;
+        status= Status.NORMAL;
         initiative= 0;
 
         str= 0;
