@@ -140,42 +140,27 @@ public class MonsterCellView extends ListCell<Monster> {
 
             statusBox.getSelectionModel().select(monster.status);
 
-            currHpField.textProperty().addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    int temp = monster.currentHP;
+            currHpField.textProperty().addListener((observable, oldValue, newValue) -> {
+                int temp = monster.currentHP;
 
-                    try {
-                        monster.currentHP = Integer.parseInt(currHpField.getText());
-                    } catch (NumberFormatException e) {
-                        System.out.println("Could not convert \"" + currHpField.getText() + "\" to an int.");
-                        monster.currentHP = temp;
-                    }
+                try {
+                    monster.currentHP = Integer.parseInt(currHpField.getText());
+                } catch (NumberFormatException e) {
+                    System.out.println("Could not convert \"" + currHpField.getText() + "\" to an int.");
+                    monster.currentHP = temp;
                 }
             });
 
-            nameBox.textProperty().addListener(new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    monster.name = nameBox.getText();
-                }
-            });
+            nameBox.textProperty().addListener((observable, oldValue, newValue) -> monster.name = nameBox.getText());
 
-            statusBox.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    monster.status = statusBox.getSelectionModel().getSelectedIndex();
-                }
-            });
+            statusBox.setOnAction(event -> monster.status = statusBox.getSelectionModel().getSelectedIndex());
 
+            // TODO BUG Tooltip appears mulitple times and doesn't disappear
             Tooltip attackTip = new Tooltip("This is a test tooltip.");
 
-            attackBox.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent t) {
-                    Node  node =(Node)t.getSource();
-                    attackTip.show(node, attackBox.getScene().getWindow().getX()+t.getSceneX(), attackBox.getScene().getWindow().getY()+t.getSceneY());
-                }
+            attackBox.setOnMouseEntered(event -> {
+                Node  node =(Node)event.getSource();
+                //attackTip.show(node, attackBox.getScene().getWindow().getX()+t.getSceneX(), attackBox.getScene().getWindow().getY()+t.getSceneY());
             });
 
             String monsterUrlString = "https://jsigvard.com/dnd/monster.php?m=" + monster.entityClass.replaceAll(" ", "-").replaceAll(",", "-").replaceAll(" ", "");

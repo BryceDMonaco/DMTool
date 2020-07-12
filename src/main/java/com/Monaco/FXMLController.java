@@ -87,43 +87,37 @@ public class FXMLController implements Initializable {
         monsterListView.setItems(activeMonsters);
         monsterListView.setCellFactory(monsterCellViewer -> new MonsterCellView());
 
-        monsterPickerBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
-                    addButton.setDisable(false);
-                } else {
-                    addButton.setDisable(true);
-                }
+        monsterPickerBox.setOnAction(event -> {
+            if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
+                addButton.setDisable(false);
+            } else {
+                addButton.setDisable(true);
             }
         });
 
-        addButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Pressed!");
-                if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
-                    // Add a new monster cell to the monster list and populate it with items from the selected item
-                    Monster newMonster = new Monster(monsterPickerBox.getSelectionModel().getSelectedItem());
-                    Monster[] currentMonsters = activeMonsters.toArray(new Monster[1]);
-                    activeMonsters.clear();
-                    if (currentMonsters.length > 0) {
-                        activeMonsters.addAll(currentMonsters);
-                    }
-                    activeMonsters.add(newMonster);
-                    System.out.println("New monster added: " + newMonster);
-                    System.out.println("Monster list is now: ");
-                    for (Monster monster : activeMonsters) {
-                        System.out.println("\t" + monster);
-                    }
-
-                    System.out.println("Monster ListView is now: ");
-                    for (Monster monster : monsterListView.getItems()) {
-                        System.out.println("\t" + monster);
-                    }
-
-                    System.out.println("Done.");
+        addButton.setOnAction(event -> {
+            System.out.println("Pressed!");
+            if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
+                // Add a new monster cell to the monster list and populate it with items from the selected item
+                Monster newMonster = new Monster(monsterPickerBox.getSelectionModel().getSelectedItem());
+                Monster[] currentMonsters = activeMonsters.toArray(new Monster[1]);
+                activeMonsters.clear();
+                if (currentMonsters.length > 0) {
+                    activeMonsters.addAll(currentMonsters);
                 }
+                activeMonsters.add(newMonster);
+                System.out.println("New monster added: " + newMonster);
+                System.out.println("Monster list is now: ");
+                for (Monster monster : activeMonsters) {
+                    System.out.println("\t" + monster);
+                }
+
+                System.out.println("Monster ListView is now: ");
+                for (Monster monster : monsterListView.getItems()) {
+                    System.out.println("\t" + monster);
+                }
+
+                System.out.println("Done.");
             }
         });
 
