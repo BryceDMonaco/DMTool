@@ -197,7 +197,10 @@ public class FXMLController implements Initializable {
         // TODO Selecting this way basically makes the checkbox obsolete
         monsterListView.getSelectionModel().selectedItemProperty().addListener(selectedChangeListener);
 
-        selectAllButton.setOnAction(event -> monsterListView.getSelectionModel().selectAll());
+        selectAllButton.setOnAction(event -> {
+            monsterListView.getSelectionModel().clearSelection();
+            monsterListView.getSelectionModel().selectAll();
+        });
 
         deselectAllButton.setOnAction(event -> monsterListView.getSelectionModel().clearSelection());
 
