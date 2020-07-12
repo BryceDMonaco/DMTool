@@ -98,11 +98,6 @@ public class FXMLController implements Initializable {
             if (monsterPickerBox.getSelectionModel().getSelectedItem() != null) {
                 // Add a new monster cell to the monster list and populate it with items from the selected item
                 Monster newMonster = new Monster(monsterPickerBox.getSelectionModel().getSelectedItem());
-                Monster[] currentMonsters = activeMonsters.toArray(new Monster[1]);
-                activeMonsters.clear();
-                if (currentMonsters.length > 0) {
-                    activeMonsters.addAll(currentMonsters);
-                }
                 activeMonsters.add(newMonster);
                 System.out.println("New monster added: " + newMonster);
                 System.out.println("Monster list is now: ");
