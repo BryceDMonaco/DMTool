@@ -1,10 +1,11 @@
 package com.Monaco;
 
+import com.Monaco.Entities.Entity;
 import com.Monaco.Entities.Monster;
 import com.Monaco.Entities.Tools.MonsterCellView;
 import com.Monaco.Entities.Tools.MonsterParser;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -174,10 +175,10 @@ public class FXMLController implements Initializable {
         // Allow for multiple cells to be selected at once
         monsterListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // Create a listener to watch the list in the handler to update the size text whenever a monster is selected/deselected
-        ChangeListener selectedChangeListener = (observable, oldValue, newValue) -> {
+        // TODO Selecting this way basically makes the checkbox obsolete
+        monsterListView.getSelectionModel().getSelectedItems().addListener((ListChangeListener<Monster>) c -> {
             int numMonstersSelected = monsterListView.getSelectionModel().getSelectedItems().size();
-            // Update the selected count label TODO sometimes does not update when >1 selected and one is deselected
+            // Update the selected count label
             selectedLabel.setText(String.valueOf(numMonstersSelected) + " Selected");
 
             // Disable selected function buttons if nothing is selected
@@ -187,10 +188,7 @@ public class FXMLController implements Initializable {
             conditionSelectedButton.setDisable(numMonstersSelected == 0);
             duplicateSelectedButton.setDisable(numMonstersSelected == 0);
             damageSelectedButton.setDisable(numMonstersSelected == 0);
-        };
-
-        // TODO Selecting this way basically makes the checkbox obsolete
-        monsterListView.getSelectionModel().selectedItemProperty().addListener(selectedChangeListener);
+        });
 
         selectAllButton.setOnAction(event -> {
             monsterListView.getSelectionModel().clearSelection();
