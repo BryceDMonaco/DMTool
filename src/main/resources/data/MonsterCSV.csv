@@ -406,7 +406,6 @@ Quipper,Beast,U,Tiny,0,13,1,NO,1,N/A,10,2,-4,16,3,9,-1,1,-5,7,-2,2,-4,335,NO,NO,
 Rakshasa,Fiend,LE,Medium,13,16,110,YES,2d6+2,N/A,,,,,,,,,,,,,,257,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,YES,Monster Manual
 Rat,Beast,U,Tiny,0,10,1,NO,N/A,N/A,10,2,-4,11,0,9,-1,2,-4,10,0,4,-3,335,NO,NO,NO,NO,NO,NO,NO,YES,NO,NO,YES,Monster Manual
 Raven,Beast,U,Tiny,0,12,1,NO,1,N/A,10,2,-4,14,2,8,-1,2,-4,12,1,6,-2,335,NO,NO,NO,NO,NO,YES,NO,YES,NO,NO,YES,Monster Manual
-"Redbrand Ruffian",Humanoid,NOT LAWFUL,Medium,1/2,14,16,NO,1d6+2,,100,11,0,14,2,12,1,9,-1,9,-1,11,0,None,YES,YES,YES,YES,NO,YES,NO,NO,NO,NO,YES,Custom
 "Red Dragon, Adult",Dragon,CE,Huge,17,19,256,NO,2d10+2d6+8,2d6+8,18000,27,8,10,0,25,7,16,3,13,1,21,5,98,NO,NO,NO,NO,NO,YES,YES,NO,NO,NO,NO,Monster Manual
 "Red Dragon, Ancient",Dragon,CE,Gargantuan,24,22,546,NO,2d10+4d6+10,2d6+10,,,,,,,,,,,,,,97,NO,NO,NO,NO,NO,YES,YES,NO,NO,NO,NO,Monster Manual
 "Red Dragon, Wyrmling",Dragon,CE,Medium,4,17,75,NO,1d10+1d6+4,7d6,,,,,,,,,,,,,,98,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,Monster Manual
@@ -449,7 +448,6 @@ Shrieker,Plant,U,Medium,0,5,13,NO,N/A,N/A,,,,,,,,,,,,,,138,NO,NO,NO,NO,NO,NO,NO,
 "Silver Dragon, Young",Dragon,LG,Large,9,18,168,NO,2d10+6,2d6+6,,,,,,,,,,,,,,118,NO,NO,NO,NO,NO,NO,YES,NO,NO,NO,YES,Monster Manual
 Skeleton,Undead,LE,Medium,1/4,13,13,NO,1d6+2,1d6+2,50,10,0,14,2,15,2,6,-2,8,-1,5,-3,272,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,YES,Monster Manual
 Slaad Tadpole,Aberration,CN,Tiny,1/8,12,10,NO,1d4+2,N/A,,,,,,,,,,,,,,276,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,Monster Manual
-"Slime, Mossy",Ooze,U,Small,2,6,24,NO,1d6+2,N/A,250,14,2,3,-4,20,5,1,-5,6,-2,1,-5,,NO,NO,NO,NO,NO,NO,NO,YES,YES,NO,NO,Custom
 Slithering Tracker,Ooze,CE,Medium,3,14,32,NO,1d10+3,3d10,,,,,,,,,,,,,,191,NO,NO,NO,NO,NO,NO,NO,NO,YES,NO,YES,Volo's Guide to Monsters
 Smoke Mephit,Elemental,NE,Small,1/4,12,22,YES,1d4+2,N/A,,,,,,,,,,,,,,217,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,YES,Monster Manual
 Solar,Celestial,LG,Large,21,21,243,YES,4d6+6d8+8,8d8+6,,,,,,,,,,,,,,18,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,NO,Monster Manual
