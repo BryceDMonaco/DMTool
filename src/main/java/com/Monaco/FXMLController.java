@@ -8,16 +8,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FXMLController implements Initializable {
     @FXML
@@ -204,6 +210,140 @@ public class FXMLController implements Initializable {
                 }
             }
             monsterListView.refresh();
+        });
+
+        resetSelectedButton.setOnAction(event -> {
+            for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                if (monster != null) {
+                    monster.reset();
+                }
+            }
+            monsterListView.refresh();
+        });
+
+        removeSelectedButton.setOnAction(event -> {
+            // Saved to an array because removing them shrinks the selected items list
+            final Monster[] selectedMonsters = monsterListView.getSelectionModel().getSelectedItems().toArray(new Monster[]{});
+
+            for (Monster monster : selectedMonsters) {
+                if (monster != null) {
+                    monsterListView.getItems().remove(monster);
+                }
+            }
+            monsterListView.refresh();
+        });
+
+        conditionSelectedButton.setOnAction(event -> {
+            AtomicInteger conditionValue = new AtomicInteger(-1);
+            ComboBox conditionBox;
+            Button massApplyButton;
+            Button massCancelButton;
+
+            ObservableList condList = FXCollections.observableArrayList(
+                    "Normal", "Blinded", "Charmed", "Deafened", "Frightened", "Grappled", "Incapacitated",
+                    "Invisible", "Paralyzed", "Poisoned", "Prone", "Restrained", "Stunned", "Unconscious");
+
+
+            Stage conditionWindow = new Stage();
+            conditionWindow.initModality(Modality.WINDOW_MODAL);
+            conditionWindow.initOwner(((Node) monsterListView).getScene().getWindow());
+            conditionWindow.setTitle("Apply Damage");
+            try {
+                conditionWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassConditionWindow.fxml"))));
+                conditionBox = (ComboBox) conditionWindow.getScene().lookup("#massConditionBox");
+                conditionBox.setItems(condList);
+                massApplyButton = (Button) conditionWindow.getScene().lookup("#massApplyButton");
+                massApplyButton.setOnAction(event3 -> {
+                    if (conditionBox.getSelectionModel().getSelectedItem() != null) {
+                        conditionValue.set(conditionBox.getSelectionModel().getSelectedIndex());
+                    } else {
+                        conditionValue.set(-1);  // An enum value can never be -1
+                    }
+
+                    conditionWindow.close();
+
+                    if (conditionValue.get() != -1) {
+                        Entity.Status newStatus = Entity.Status.values()[conditionValue.get()];
+                        for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                            if (monster != null) {
+                                monster.status = newStatus;
+                            }
+                        }
+                    }
+
+                    monsterListView.refresh();
+                });
+
+                massCancelButton = (Button) conditionWindow.getScene().lookup("#massCancelButton");
+                massCancelButton.setOnAction(event3 -> {
+                    conditionWindow.close();
+                });
+
+                conditionWindow.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("There was an error opening the mass condition window");
+                return;
+            }            Entity.Status newStatus = Entity.Status.BLINDED;
+
+        });
+
+        duplicateSelectedButton.setOnAction(event -> {
+            for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                if (monster != null) {
+                    monsterListView.getItems().add(new Monster(monster, monster.currentHP, monster.status, monster.name));
+                }
+            }
+            monsterListView.refresh();
+        });
+
+        damageSelectedButton.setOnAction(event -> {
+            AtomicInteger damageAmount = new AtomicInteger();
+            TextField damageField;
+            Button massApplyButton;
+            Button massCancelButton;
+            Stage damageWindow = new Stage();
+            damageWindow.initModality(Modality.WINDOW_MODAL);
+            damageWindow.initOwner(((Node) monsterListView).getScene().getWindow());
+            damageWindow.setTitle("Apply Damage");
+            try {
+                damageWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassDamageWindow.fxml"))));
+                // TODO enforce numbers only input
+                damageField = (TextField) damageWindow.getScene().lookup("#massDamageField");
+
+                massApplyButton = (Button) damageWindow.getScene().lookup("#massApplyButton");
+                massApplyButton.setOnAction(event3 -> {
+                    try {
+                        damageAmount.set(Integer.parseInt(damageField.getText()));
+                    } catch (NumberFormatException e) {
+                        damageAmount.set(0);
+                    }
+
+                    damageWindow.close();
+
+                    for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                        if (monster != null) {
+                            monster.currentHP += -(damageAmount.get());
+
+                            if (monster.currentHP < 0) {
+                                monster.currentHP = 0;
+                            }
+                        }
+                    }
+                    monsterListView.refresh();
+                });
+
+                massCancelButton = (Button) damageWindow.getScene().lookup("#massCancelButton");
+                massCancelButton.setOnAction(event3 -> {
+                    damageWindow.close();
+                });
+
+                damageWindow.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("There was an error opening the mass damage window");
+                return;
+            }
         });
 
         System.out.println("Initialized!");
