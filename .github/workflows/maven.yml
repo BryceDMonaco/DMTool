@@ -1,0 +1,20 @@
+# This workflow will build a Java project with Maven when a pull request is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 13
+      uses: actions/setup-java@v1
+      with:
+        java-version: 13
+    - name: Build with Maven
+      run: mvn -B clean compile package install --file pom.xml
