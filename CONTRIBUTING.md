@@ -1,4 +1,4 @@
-#How to Contribute
+# How to Contribute
 1. Select an issue for which to make changes for, if an issue does not exist for the change you would like to make, create one!
 2. Create a new branch with the same name as the issue, use hyphens instead of spaces in the branch name (Ex. an issue called "Hey this variable is Null" would have a branch named "Hey-this-variable-is-Null")
 3. Commit changes as needed, please try to keep commit messages clear
