@@ -249,8 +249,8 @@ public class FXMLController implements Initializable {
             conditionWindow.initOwner(((Node) monsterListView).getScene().getWindow());
             conditionWindow.setTitle("Apply Condition");
             try {
-                conditionWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassConditionWindow.fxml"))));
-                conditionBox = (ComboBox) conditionWindow.getScene().lookup("#massConditionBox");
+                conditionWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassComboBoxWindow.fxml"))));
+                conditionBox = (ComboBox) conditionWindow.getScene().lookup("#massComboBox");
                 conditionBox.setItems(condList);
                 massApplyButton = (Button) conditionWindow.getScene().lookup("#massApplyButton");
                 massApplyButton.setOnAction(event3 -> {
@@ -307,9 +307,9 @@ public class FXMLController implements Initializable {
             damageWindow.initOwner(((Node) monsterListView).getScene().getWindow());
             damageWindow.setTitle("Apply Damage");
             try {
-                damageWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassDamageWindow.fxml"))));
+                damageWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassTextFieldWindow.fxml"))));
                 // TODO enforce numbers only input
-                damageField = (TextField) damageWindow.getScene().lookup("#massDamageField");
+                damageField = (TextField) damageWindow.getScene().lookup("#massTextField");
 
                 massApplyButton = (Button) damageWindow.getScene().lookup("#massApplyButton");
                 massApplyButton.setOnAction(event3 -> {
