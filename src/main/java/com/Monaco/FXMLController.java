@@ -247,7 +247,7 @@ public class FXMLController implements Initializable {
             Stage conditionWindow = new Stage();
             conditionWindow.initModality(Modality.WINDOW_MODAL);
             conditionWindow.initOwner(((Node) monsterListView).getScene().getWindow());
-            conditionWindow.setTitle("Apply Damage");
+            conditionWindow.setTitle("Apply Condition");
             try {
                 conditionWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassConditionWindow.fxml"))));
                 conditionBox = (ComboBox) conditionWindow.getScene().lookup("#massConditionBox");
