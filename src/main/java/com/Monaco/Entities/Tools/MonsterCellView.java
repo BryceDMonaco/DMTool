@@ -2,6 +2,7 @@ package com.Monaco.Entities.Tools;
 
 import com.Monaco.Entities.Entity;
 import com.Monaco.Entities.Monster;
+import com.Monaco.Util.GlobalColors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.awt.*;
@@ -22,6 +24,10 @@ import java.net.Socket;
 import java.net.URI;
 
 public class MonsterCellView extends ListCell<Monster> {
+
+    @FXML
+    private Pane statusIndicatorPane;
+
     @FXML
     private HBox hbox;
 
@@ -170,6 +176,12 @@ public class MonsterCellView extends ListCell<Monster> {
                     e.printStackTrace();
                 }
             });
+
+            if (monster.currentHP <= 0) {
+                statusIndicatorPane.setStyle("-fx-background-color: #" + GlobalColors.DEAD_COLOR);
+            } else {
+                statusIndicatorPane.setStyle("-fx-background-color: #" + GlobalColors.DEFAULT_BACKGROUND_COLOR);
+            }
 
             /*
             // Check if the monster website is reachable or not, if not, disable the source button
