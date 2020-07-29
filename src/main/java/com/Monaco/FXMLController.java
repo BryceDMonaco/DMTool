@@ -24,6 +24,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FXMLController implements Initializable {
     @FXML
@@ -70,6 +71,9 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button damageSelectedButton;
+
+    @FXML
+    private Button renameSelectedButton;
 
     @FXML
     private Label selectedLabel;
@@ -194,6 +198,7 @@ public class FXMLController implements Initializable {
             conditionSelectedButton.setDisable(numMonstersSelected == 0);
             duplicateSelectedButton.setDisable(numMonstersSelected == 0);
             damageSelectedButton.setDisable(numMonstersSelected == 0);
+            renameSelectedButton.setDisable(numMonstersSelected == 0);
         });
 
         selectAllButton.setOnAction(event -> {
@@ -339,6 +344,50 @@ public class FXMLController implements Initializable {
                 });
 
                 damageWindow.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("There was an error opening the mass damage window");
+                return;
+            }
+        });
+
+        renameSelectedButton.setOnAction(event -> {
+            AtomicReference<String> newName = new AtomicReference<>();
+            TextField nameField;
+            Button massApplyButton;
+            Button massCancelButton;
+            Stage nameWindow = new Stage();
+            nameWindow.initModality(Modality.WINDOW_MODAL);
+            nameWindow.initOwner(((Node) monsterListView).getScene().getWindow());
+            nameWindow.setTitle("Apply Name");
+            try {
+                nameWindow.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MassTextFieldWindow.fxml"))));
+                nameField = (TextField) nameWindow.getScene().lookup("#massTextField");
+
+                massApplyButton = (Button) nameWindow.getScene().lookup("#massApplyButton");
+                massApplyButton.setOnAction(event3 -> {
+                    try {
+                        newName.set(nameField.getText());
+                    } catch (NumberFormatException e) {
+                        newName.set(null);
+                    }
+
+                    nameWindow.close();
+
+                    for (Monster monster : monsterListView.getSelectionModel().getSelectedItems()) {
+                        if (monster != null) {
+                            monster.name = newName.get();
+                        }
+                    }
+                    monsterListView.refresh();
+                });
+
+                massCancelButton = (Button) nameWindow.getScene().lookup("#massCancelButton");
+                massCancelButton.setOnAction(event3 -> {
+                    nameWindow.close();
+                });
+
+                nameWindow.show();
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("There was an error opening the mass damage window");
