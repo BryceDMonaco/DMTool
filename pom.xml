@@ -2,7 +2,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.Monaco</groupId>
    <artifactId>DMTool</artifactId>
-   <version>0.0.2-DEV</version>
+   <version>0.0.2</version>
    <properties>
        <!-- The final name for the JAR that you can find in target directory-->
        <jar.final.name>${artifactId}-${version}</jar.final.name>
