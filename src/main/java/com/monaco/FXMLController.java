@@ -1,9 +1,9 @@
-package com.Monaco;
+package com.monaco;
 
-import com.Monaco.Entities.Entity;
-import com.Monaco.Entities.Monster;
-import com.Monaco.Entities.Tools.MonsterCellView;
-import com.Monaco.Entities.Tools.MonsterParser;
+import com.monaco.entities.Entity;
+import com.monaco.entities.Monster;
+import com.monaco.entities.gui.MonsterCellView;
+import com.monaco.entities.tools.MonsterParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;

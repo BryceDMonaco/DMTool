@@ -1,8 +1,8 @@
-package com.Monaco.Entities.Tools;
+package com.monaco.entities.gui;
 
-import com.Monaco.Entities.Entity;
-import com.Monaco.Entities.Monster;
-import com.Monaco.Util.GlobalColors;
+import com.monaco.entities.Entity;
+import com.monaco.entities.Monster;
+import com.monaco.util.GlobalColors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

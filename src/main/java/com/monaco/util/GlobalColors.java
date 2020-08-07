@@ -1,4 +1,4 @@
-package com.Monaco.Util;
+package com.monaco.util;
 
 public class GlobalColors {
     public static final String DEAD_COLOR = "9c1d14";

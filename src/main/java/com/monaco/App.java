@@ -1,4 +1,4 @@
-package com.Monaco;
+package com.monaco;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,4 +1,4 @@
-package com.Monaco.Entities;
+package com.monaco.entities;
 
 public class Entity {
     public enum Status {
