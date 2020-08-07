@@ -93,6 +93,7 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         monsterPickerBox.setItems(monsterList);
+        monsterListView.setPlaceholder(new Label("No monsters to display, select and add a monster to view it here"));
         monsterListView.setItems(activeMonsters);
         monsterListView.setCellFactory(monsterCellViewer -> new MonsterCellView());
 
